@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>Arbre des Services et Employés</title>
+        <style>
+            body {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                margin: 0;
+                background-color: #f4f4f4; /* Light gray background color */
+            }
+
+            .tree-container {
+                padding: 20px;
+                background-color: #ffffff; /* White background for the tree container */
+                border-radius: 8px; /* Rounded corners for a softer look */
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Box shadow for a subtle lift */
+                width: 150%; /* Set the width to 120% of the viewport width */
+                max-width: 1200px; /* Optional: Add a max-width to limit the width on larger screens */
+            }
+
+            .tree-title {
+                font-size: 24px;
+                font-weight: bold;
+                margin-bottom: 20px;
+                color: #333; /* Dark gray color for the title */
+            }
+
+            .service-node {
+                font-weight: bold;
+                margin-bottom: 10px;
+                color: #007bff; /* Blue color for service nodes */
+            }
+
+            .employee-node {
+                color: #28a745; /* Green color for employee nodes */
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <h:form>
+            <div class="tree-container">
+                <h:outputText value="Services , Chefs et Employés" styleClass="tree-title" />
+
+                <p:tree value="#{serviceBean.root}" var="node" dynamic="true" cache="false">
+                    <p:treeNode>
+                        <h:outputText value="#{node}" />
+                    </p:treeNode>
+                    <p:treeNode type="service" styleClass="service-node">
+                        <h:outputText value="#{node.nom}" />
+                    </p:treeNode>
+                    <p:treeNode type="employee" styleClass="employee-node">
+                        <h:outputText value="#{node.nom}" />
+                    </p:treeNode>
+                </p:tree>
+            </div>
+        </h:form>
+    </h:body>
+</html>
